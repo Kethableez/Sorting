@@ -1,6 +1,6 @@
 #pragma once
 
-#define AMOUNT 10
+#define AMOUNT 100
 #define PATH "C:\\Users\\mocar\\OneDrive\\Pulpit\\PWr\\PAMSI\\PROJEKT 1\\Pomiary\\"
 
 #include <iostream>

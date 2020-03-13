@@ -9,7 +9,7 @@ Array::Array(int nSize) {
 
 void Array::InitRand() {
 	for (int i = 0; i < this->size; i++) {
-		this->Arr[i] = 1 + rand() % (this->size);
+		this->Arr[i] =  1 + rand() % (this->size);
 	}
 }
 

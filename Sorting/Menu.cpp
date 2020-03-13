@@ -39,7 +39,7 @@ void interface() {
 				break;
 
 			case 3:
-				//Intro(size, b);
+				Intro(size, b);
 				break;
 
 			case 4:
@@ -213,67 +213,76 @@ void Merge(int size, int choice) {
 
 }
 
-//void Intro(int size, int choice) {
-//	int* Tarr = new int[AMOUNT];
-//	bool correct = false;
-//
-//	if (choice == 1) {
-//		for (int i = 0; i < AMOUNT; i++) {
-//			Array* Arr = new Array(size);
-//			Arr->InitRand();
-//
-//			time_t t = clock();
-//			Hybrid(Arr->Arr, size);
-//
-//			if (Arr->IsCorrect()) {
-//				t = clock() - t;
-//				Tarr[i] = (int)t;
-//				std::cout << "[Introsort] Sorting time: " << t << " ms" << std::endl;
-//				correct = true;
-//			}
-//			else std::cout << "Invalid sorting! \n";
-//			delete[] Arr;
-//		}
-//	}
-//
-//	else if (choice == 2) {
-//		int perc;
-//		std::cout << "Enter percentage: ";
-//		std::cin >> perc;
-//
-//		for (int i = 0; i < AMOUNT; i++) {
-//			Array* Arr = new Array(size);
-//			Arr->InitPerc(perc);
-//
-//			time_t t = clock();
-//			Hybrid(Arr->Arr, size);
-//
-//			if (Arr->IsCorrect()) {
-//				t = clock() - t;
-//				Tarr[i] = (int)t;
-//				std::cout << "[Introsort] Sorting time: " << t << " ms" << std::endl;
-//				correct = true;
-//			}
-//		}
-//	}
-//
-//	else if (choice == 3) {
-//		for (int i = 0; i < AMOUNT; i++) {
-//			Array* Arr = new Array(size);
-//			Arr->InitRev();
-//
-//			time_t t = clock();
-//			Hybrid(Arr->Arr, size);
-//
-//			if (Arr->IsCorrect()) {
-//				t = clock() - t;
-//				Tarr[i] = (int)t;
-//				std::cout << "[Introsort] Sorting time: " << t << " ms" << std::endl;
-//				correct = true;
-//			}
-//		}
-//	}
-//}
+void Intro(int size, int choice) {
+	int* Tarr = new int[AMOUNT];
+	bool correct = false;
+
+	if (choice == 1) {
+		for (int i = 0; i < AMOUNT; i++) {
+			Array* Arr = new Array(size);
+			Arr->InitRand();
+
+			time_t t = clock();
+			HybridIntro(Arr->Arr, size);
+
+			if (Arr->IsCorrect()) {
+				t = clock() - t;
+				Tarr[i] = (int)t;
+				std::cout << "[Introsort] Sorting time: " << t << " ms" << std::endl;
+				correct = true;
+			}
+			else std::cout << "Invalid sorting! \n";
+			delete[] Arr;
+		}
+	}
+
+	else if (choice == 2) {
+		int perc;
+		std::cout << "Enter percentage: ";
+		std::cin >> perc;
+
+		for (int i = 0; i < AMOUNT; i++) {
+			Array* Arr = new Array(size);
+			Arr->InitPerc(perc);
+
+			time_t t = clock();
+			HybridIntro(Arr->Arr, size);
+
+			if (Arr->IsCorrect()) {
+				t = clock() - t;
+				Tarr[i] = (int)t;
+				std::cout << "[Introsort] Sorting time: " << t << " ms" << std::endl;
+				correct = true;
+			}
+		}
+	}
+
+	else if (choice == 3) {
+		for (int i = 0; i < AMOUNT; i++) {
+			Array* Arr = new Array(size);
+			Arr->InitRev();
+
+			time_t t = clock();
+			HybridIntro(Arr->Arr, size);
+
+			if (Arr->IsCorrect()) {
+				t = clock() - t;
+				Tarr[i] = (int)t;
+				std::cout << "[Introsort] Sorting time: " << t << " ms" << std::endl;
+				correct = true;
+			}
+		}
+	}
+	else {
+		std::cout << "Incorrect option! ";
+		return;
+	}
+
+	if (correct) {
+		SaveFile(Tarr, "Intosort");
+	}
+	else std::cout << "Save to file error - incorrect sorting! \n";
+}
 
 void Write(int* time, std::string sFilename) {
 	std::ofstream file;
@@ -298,6 +307,7 @@ void SaveFile(int* tArr, std::string sortingname) {
 	std::cin >> temp;
 	std::string sFilename = sortingname;
 
+	sFilename.append(".");
 	sFilename.append(temp);
 	sFilename.append(".");
 

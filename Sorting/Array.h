@@ -1,7 +1,7 @@
 #pragma once
 
 #include <iostream>
-#include <math.h>
+#include <cmath>
 #include <time.h>
 #include "Sort.h"
 
