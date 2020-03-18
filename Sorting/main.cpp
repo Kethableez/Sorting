@@ -8,5 +8,5 @@ using namespace std;
 
 int main() {
 	srand(time(NULL));	
-	interface();
+	Sorting();
 }

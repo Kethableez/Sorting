@@ -7,7 +7,7 @@ void Quicksort(Item* Arr, int left, int right) {
 
 	int i = left - 1;
 	int j = right + 1;
-	Item pivot Arr[(left + right) / 2];
+	Item pivot = Arr[(left + right) / 2];
 
 	while (true) {
 		while (pivot < Arr[--j]);

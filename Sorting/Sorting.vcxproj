@@ -145,7 +145,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Array.h" />
+    <ClInclude Include="Introsort.h" />
     <ClInclude Include="menu.h" />
+    <ClInclude Include="Mergesort.h" />
+    <ClInclude Include="Quicksort.h" />
     <ClInclude Include="Sort.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

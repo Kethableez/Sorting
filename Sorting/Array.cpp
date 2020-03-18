@@ -9,12 +9,12 @@ Array::Array(int nSize) {
 
 void Array::InitRand() {
 	for (int i = 0; i < this->size; i++) {
-		this->Arr[i] =  1 + rand() % (this->size);
+		this->Arr[i] =  1 + rand() % (this->size * 10);
 	}
 }
 
-void Array::InitPerc(int percent) {
-	int p = (this->size * percent) / 100;
+void Array::InitPerc(float percent) {
+	int p = (int)(((float)this->size * percent) / 100);
 
 	for (int i = 0; i < this->size; i++) {
 		if (i < p) this->Arr[i] = i + 1;
@@ -61,4 +61,9 @@ bool Array::IsCorrect() {
 		}
 	}
 	return true;
+}
+
+Array::~Array() {
+	delete[] Arr;
+	delete[] tArr;
 }

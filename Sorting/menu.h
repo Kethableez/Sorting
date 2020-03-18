@@ -7,18 +7,18 @@
 #include <time.h>
 #include <fstream>
 
+#include <string>
 #include "Array.h"
-#include "Sort.h"
+#include "Quicksort.h"
+#include "Mergesort.h"
+#include "Introsort.h"
 
-void menu();
-void submenu();
+void Sorting();
 
-void interface();
+void Quick(int size, int choice, float perc);
+void Merge(int size, int choice, float perc);
+void Intro(int size, int choice, float perc);
 
-void Quick(int size, int choice);
-void Merge(int size, int choice);
-void Intro(int size, int choice);
-
-void Write(int* time, std::string sFilename);
+void Write(int average, int total, std::string sFilename);
 void CreateFile(std::string sFilename);
-void SaveFile(int* tArr, std::string sortingname);
+void SaveFile(int average, int total, std::string sortingname, std::string choice, std::string Size);

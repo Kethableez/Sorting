@@ -1,63 +1,53 @@
 #include "menu.h"
 
-void menu() {
-	std::cout << "Choose sorting algorithm: " << std::endl;
-	std::cout << "1. Quicksort" << std::endl;
-	std::cout << "2. Mergesort" << std::endl;
-	std::cout << "3. Introsort" << std::endl;
-	std::cout << "4. Quit" << std::endl;
+void Sorting() {
+	int t[5] = { 10000, 50000, 100000, 500000, 1000000 };
+	float p[8] = { 0, 25, 50, 75, 95, 99, 99.7, 0 };
+
+	//for (int i = 0; i < 5; i++) {
+	//	for (int j = 0; j < 8; j++) {
+	//		if (j == 0) {
+	//			Quick(t[i], 1, p[j]);
+	//		}
+	//		else if (j == 7) Quick(t[i], 3, p[j]);
+	//		else Quick(t[i], 2, p[j]);
+
+	//	}
+	//}
+
+	//for (int i = 0; i < 5; i++) {
+	//	for (int j = 0; j < 8; j++) {
+	//		if (j == 0) {
+	//			Merge(t[i], 1, p[j]);
+	//		}
+	//		else if (j == 7) Merge(t[i], 3, p[j]);
+	//		else Merge(t[i], 2, p[j]);
+
+	//	}
+	//}
+	Intro(10000, 2, 25);
+
 }
 
-void submenu() {
-	std::cout << "Choose initialize type:" << std::endl;
-	std::cout << "1. Random elements" << std::endl;
-	std::cout << "2. Percent of sorted elements" << std::endl;
-	std::cout << "3. Reverse order " << std::endl;
-}
 
-void interface() {
-	int k = 0, b, size;
-
-	while (k != 4) {
-		menu();
-		std::cin >> k;
-
-		if (k != 4) {
-			submenu();
-			std::cin >> b;
-
-			std::cout << "Enter size: ";
-			std::cin >> size;
-
-			switch (k) {
-			case 1:
-				Quick(size, b);
-				break;
-
-			case 2:
-				Merge(size, b);
-				break;
-
-			case 3:
-				Intro(size, b);
-				break;
-
-			case 4:
-				break;
-
-			default:
-				std::cout << "Incorrect option";
-				break;
-			}
-		}
-		else break;
+void Quick(int size, int choice, float perc) {
+	std::string sSize = std::to_string(size);
+	
+	std::string sChoice;
+	if (choice == 1) sChoice = "Rand";
+	else if (choice == 2) {
+		sChoice = "Perc";
+		sChoice.append(".");
+		std::string sPerc = std::to_string(perc);
+		sChoice.append(sPerc);
+		sChoice.append(".");
 	}
-}
-
-void Quick(int size, int choice) {
+	else if (choice == 3) sChoice = "Rev";
 
 	int* Tarr = new int[AMOUNT];
 	bool correct = false;
+
+	time_t tt = clock();
 
 	if (choice == 1) {
 		for (int i = 0; i < AMOUNT; i++) {
@@ -70,19 +60,16 @@ void Quick(int size, int choice) {
 			if (Arr->IsCorrect()) {
 				t = clock() - t;
 				Tarr[i] = (int)t;
-				std::cout << "[Quicksort] Sorting time: " << t << " ms" << std::endl;
+				//std::cout << "[Quicksort] Sorting time: " << t << " ms" << std::endl;
 				correct = true;
 			}
 			else std::cout << "Sorting is incorrect! \n";
 
-			delete Arr;
+			Arr->~Array();
 		}
 	}
 
 	else if (choice == 2) {
-		int perc;
-		std::cout << "Enter percentage: ";
-		std::cin >> perc;
 		for (int i = 0; i < AMOUNT; i++) {
 			Array* Arr = new Array(size);
 			Arr->InitPerc(perc);
@@ -93,12 +80,12 @@ void Quick(int size, int choice) {
 			if (Arr->IsCorrect()) {
 				t = clock() - t;
 				Tarr[i] = (int)t;
-				std::cout << "[Quicksort] Sorting time: " << t << " ms" << std::endl;
+				//std::cout << "[Quicksort] Sorting time: " << t << " ms" << std::endl;
 				correct = true;
 			}
 			else std::cout << "Sorting is incorrect! \n";
 
-			delete Arr;
+			Arr->~Array();
 		}
 	}
 
@@ -113,12 +100,12 @@ void Quick(int size, int choice) {
 			if (Arr->IsCorrect()) {
 				t = clock() - t;
 				Tarr[i] = (int)t;
-				std::cout << "[Quicksort] Sorting time: " << t << " ms" << std::endl;
+				//std::cout << "[Quicksort] Sorting time: " << t << " ms" << std::endl;
 				correct = true;
 			}
 			else std::cout << "Sorting is incorrect! \n";
 
-			delete Arr;
+			Arr->~Array();
 		}
 	}
 	else {
@@ -126,17 +113,44 @@ void Quick(int size, int choice) {
 		return;
 	}
 
+	tt = clock() - tt;
+
+	int av = 0;
+	for (int i = 0; i < AMOUNT; i++) {
+		av += Tarr[i];
+	}
+
+	int average = (av / AMOUNT);
+
 	if (correct) {
-		SaveFile(Tarr, "Quicksort");
+		SaveFile(average, tt, "Quicksort", sChoice, sSize);
+		std::cout << "DONE!" << std::endl;
 	}
 
 	else std::cout << "Save to file error - incorrect sorting! \n";
 	
+	delete[] Tarr;
 }
 
-void Merge(int size, int choice) {
+void Merge(int size, int choice, float perc) {
+
+	std::string sSize = std::to_string(size);
+
+	std::string sChoice;
+	if (choice == 1) sChoice = "Rand";
+	else if (choice == 2) {
+		sChoice = "Perc";
+		sChoice.append(".");
+		std::string sPerc = std::to_string(perc);
+		sChoice.append(sPerc);
+		sChoice.append(".");
+	}
+	else if (choice == 3) sChoice = "Rev";
+
 	int* Tarr = new int[AMOUNT];
 	bool correct = false;
+
+	time_t tt = clock();
 
 	if (choice == 1) {
 		for (int i = 0; i < AMOUNT; i++) {
@@ -149,19 +163,16 @@ void Merge(int size, int choice) {
 			if (Arr->IsCorrect()) {
 				t = clock() - t;
 				Tarr[i] = (int)t;
-				std::cout << "[Mergesort] Sorting time: " << t << " ms" << std::endl;
+				//std::cout << "[Mergesort] Sorting time: " << t << " ms" << std::endl;
 				correct = true;
 			}
 			else std::cout << "Sorting is incorrect! \n";
 
-			delete Arr;
+			Arr->~Array();
 		}
 	}
 
 	else if (choice == 2) {
-		int perc;
-		std::cout << "Enter percentage: ";
-		std::cin >> perc;
 		for (int i = 0; i < AMOUNT; i++) {
 			Array* Arr = new Array(size);
 			Arr->InitPerc(perc);
@@ -172,12 +183,12 @@ void Merge(int size, int choice) {
 			if (Arr->IsCorrect()) {
 				t = clock() - t;
 				Tarr[i] = (int)t;
-				std::cout << "[Mergesort] Sorting time: " << t << " ms" << std::endl;
+				//std::cout << "[Mergesort] Sorting time: " << t << " ms" << std::endl;
 				correct = true;
 			}
 			else std::cout << "Sorting is incorrect! \n";
 
-			delete Arr;
+			Arr->~Array();
 		}
 	}
 
@@ -192,13 +203,13 @@ void Merge(int size, int choice) {
 			if (Arr->IsCorrect()) {
 				t = clock() - t;
 				Tarr[i] = (int)t;
-				std::cout << "[Mergesort] Sorting time: " << t << " ms" << std::endl;
+				//std::cout << "[Mergesort] Sorting time: " << t << " ms" << std::endl;
 				correct = true;
 			}
 			else std::cout << "Sorting is incorrect! \n";
 
 
-			delete Arr;
+			Arr->~Array();
 		}
 	}
 	else {
@@ -206,16 +217,41 @@ void Merge(int size, int choice) {
 		return;
 	}
 
+	tt = clock() - tt;
+
+	int av = 0;
+	for (int i = 0; i < AMOUNT; i++) {
+		av += Tarr[i];
+	}
+
+	int average = (av / AMOUNT);
+
 	if (correct) {
-		SaveFile(Tarr, "Mergesort");
+		SaveFile(average, tt, "Mergesort", sChoice, sSize);
+		std::cout << "DONE!" << std::endl;
 	}
 	else std::cout << "Save to file error - incorrect sorting! \n";
-
+	delete[] Tarr;
 }
 
-void Intro(int size, int choice) {
+void Intro(int size, int choice, float perc) {
+	std::string sSize = std::to_string(size);
+
+	std::string sChoice;
+	if (choice == 1) sChoice = "Rand";
+	else if (choice == 2) {
+		sChoice = "Perc";
+		sChoice.append(".");
+		std::string sPerc = std::to_string(perc);
+		sChoice.append(sPerc);
+		sChoice.append(".");
+	}
+	else if (choice == 3) sChoice = "Rev";
+
 	int* Tarr = new int[AMOUNT];
 	bool correct = false;
+
+	time_t tt = clock();
 
 	if (choice == 1) {
 		for (int i = 0; i < AMOUNT; i++) {
@@ -223,7 +259,7 @@ void Intro(int size, int choice) {
 			Arr->InitRand();
 
 			time_t t = clock();
-			HybridIntro(Arr->Arr, size);
+			Hybrid(Arr->Arr, size);
 
 			if (Arr->IsCorrect()) {
 				t = clock() - t;
@@ -232,21 +268,17 @@ void Intro(int size, int choice) {
 				correct = true;
 			}
 			else std::cout << "Invalid sorting! \n";
-			delete[] Arr;
+			Arr->~Array();
 		}
 	}
 
 	else if (choice == 2) {
-		int perc;
-		std::cout << "Enter percentage: ";
-		std::cin >> perc;
-
 		for (int i = 0; i < AMOUNT; i++) {
 			Array* Arr = new Array(size);
 			Arr->InitPerc(perc);
 
 			time_t t = clock();
-			HybridIntro(Arr->Arr, size);
+			Hybrid(Arr->Arr, size);
 
 			if (Arr->IsCorrect()) {
 				t = clock() - t;
@@ -254,6 +286,8 @@ void Intro(int size, int choice) {
 				std::cout << "[Introsort] Sorting time: " << t << " ms" << std::endl;
 				correct = true;
 			}
+			else std::cout << "Invalid sorting! \n";
+			Arr->~Array();
 		}
 	}
 
@@ -263,7 +297,7 @@ void Intro(int size, int choice) {
 			Arr->InitRev();
 
 			time_t t = clock();
-			HybridIntro(Arr->Arr, size);
+			Hybrid(Arr->Arr, size);
 
 			if (Arr->IsCorrect()) {
 				t = clock() - t;
@@ -271,6 +305,8 @@ void Intro(int size, int choice) {
 				std::cout << "[Introsort] Sorting time: " << t << " ms" << std::endl;
 				correct = true;
 			}
+			else std::cout << "Invalid sorting! \n";
+			Arr->~Array();
 		}
 	}
 	else {
@@ -278,20 +314,30 @@ void Intro(int size, int choice) {
 		return;
 	}
 
+	tt = clock() - tt;
+
+	int av = 0;
+	for (int i = 0; i < AMOUNT; i++) {
+		av += Tarr[i];
+	}
+
+	int average = (av / AMOUNT);
+
 	if (correct) {
-		SaveFile(Tarr, "Intosort");
+		SaveFile(average, tt, "Introsort", sChoice, sSize);
+		std::cout << "DONE!" << std::endl;
 	}
 	else std::cout << "Save to file error - incorrect sorting! \n";
+	delete[] Tarr;
 }
 
-void Write(int* time, std::string sFilename) {
+void Write(int average, int total, std::string sFilename) {
 	std::ofstream file;
 	std::string Filename = PATH;
 	Filename.append(sFilename);
 	file.open(Filename);
-	for (int i = 0; i < AMOUNT; i++) {
-		file << time[i] << "\n";
-	}
+	file << average << "\n";
+	file << total << "\n";
 	file.close();
 }
 
@@ -301,22 +347,13 @@ void CreateFile(std::string sFilename) {
 	std::ofstream file{ Filename };
 }
 
-void SaveFile(int* tArr, std::string sortingname) {
-	std::cout << "Enter initialization type: " << std::endl;
-	std::string temp;
-	std::cin >> temp;
+void SaveFile(int average, int total, std::string sortingname, std::string SortType, std::string size) {
 	std::string sFilename = sortingname;
-
 	sFilename.append(".");
-	sFilename.append(temp);
+	sFilename.append(SortType);
 	sFilename.append(".");
-
-	std::cout << "Enter size: " << std::endl;
-	std::cin >> temp;
-
-	sFilename.append(temp);
+	sFilename.append(size);
 	sFilename.append(".txt");
-
 	CreateFile(sFilename);
-	Write(tArr, sFilename);
+	Write(average, total, sFilename);
 }

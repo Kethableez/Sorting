@@ -12,9 +12,10 @@ public:
 	int* tArr;
 
 	Array(int size);
+	~Array();
 
 	void InitRand();
-	void InitPerc(int percent);
+	void InitPerc(float percent);
 	void InitRev();
 
 	void Show();
