@@ -1,6 +1,10 @@
 #pragma once
 #include <iostream>
 
+/*
+	Quicksort
+*/
+
 template <typename Item>
 void Quicksort(Item* Arr, int left, int right) {
 	if (right <= left) return;
@@ -24,3 +28,7 @@ void Quicksort(Item* Arr, int left, int right) {
 	if (j > left) Quicksort(Arr, left, j);
 	if (i < right) Quicksort(Arr, i, right);
 }
+
+
+
+

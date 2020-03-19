@@ -4,29 +4,15 @@ void Sorting() {
 	int t[5] = { 10000, 50000, 100000, 500000, 1000000 };
 	float p[8] = { 0, 25, 50, 75, 95, 99, 99.7, 0 };
 
-	//for (int i = 0; i < 5; i++) {
-	//	for (int j = 0; j < 8; j++) {
-	//		if (j == 0) {
-	//			Quick(t[i], 1, p[j]);
-	//		}
-	//		else if (j == 7) Quick(t[i], 3, p[j]);
-	//		else Quick(t[i], 2, p[j]);
-
-	//	}
-	//}
-
-	//for (int i = 0; i < 5; i++) {
-	//	for (int j = 0; j < 8; j++) {
-	//		if (j == 0) {
-	//			Merge(t[i], 1, p[j]);
-	//		}
-	//		else if (j == 7) Merge(t[i], 3, p[j]);
-	//		else Merge(t[i], 2, p[j]);
-
-	//	}
-	//}
-	Intro(10000, 2, 25);
-
+	for (int i = 0; i < 5; i++) {
+		for (int j = 0; j < 8; j++) {
+			if (j == 0) {
+				Intro(t[i], 1, p[j]);
+			}
+			else if (j == 7) Intro(t[i], 3, p[j]);
+			else Intro(t[i], 2, p[j]);
+		}
+	}
 }
 
 
@@ -259,12 +245,12 @@ void Intro(int size, int choice, float perc) {
 			Arr->InitRand();
 
 			time_t t = clock();
-			Hybrid(Arr->Arr, size);
+			Introsort(Arr->Arr, 0, size - 1);
 
 			if (Arr->IsCorrect()) {
 				t = clock() - t;
 				Tarr[i] = (int)t;
-				std::cout << "[Introsort] Sorting time: " << t << " ms" << std::endl;
+				//std::cout << "[Introsort] Sorting time: " << t << " ms" << std::endl;
 				correct = true;
 			}
 			else std::cout << "Invalid sorting! \n";
@@ -278,12 +264,12 @@ void Intro(int size, int choice, float perc) {
 			Arr->InitPerc(perc);
 
 			time_t t = clock();
-			Hybrid(Arr->Arr, size);
+			Introsort(Arr->Arr, 0, size - 1);
 
 			if (Arr->IsCorrect()) {
 				t = clock() - t;
 				Tarr[i] = (int)t;
-				std::cout << "[Introsort] Sorting time: " << t << " ms" << std::endl;
+				//std::cout << "[Introsort] Sorting time: " << t << " ms" << std::endl;
 				correct = true;
 			}
 			else std::cout << "Invalid sorting! \n";
@@ -297,12 +283,12 @@ void Intro(int size, int choice, float perc) {
 			Arr->InitRev();
 
 			time_t t = clock();
-			Hybrid(Arr->Arr, size);
+			Introsort(Arr->Arr, 0, size - 1);
 
 			if (Arr->IsCorrect()) {
 				t = clock() - t;
 				Tarr[i] = (int)t;
-				std::cout << "[Introsort] Sorting time: " << t << " ms" << std::endl;
+				//std::cout << "[Introsort] Sorting time: " << t << " ms" << std::endl;
 				correct = true;
 			}
 			else std::cout << "Invalid sorting! \n";

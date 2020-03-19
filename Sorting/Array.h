@@ -3,7 +3,6 @@
 #include <iostream>
 #include <cmath>
 #include <time.h>
-#include "Sort.h"
 
 class Array{
 public:

@@ -2,6 +2,10 @@
 
 #include <iostream>
 
+/*
+	Mergesort
+*/
+
 template <typename Item>
 void Merging (Item* Arr, Item * tArr, int left, int mid, int right){
 	int i = left, j = mid + 1;
@@ -31,3 +35,6 @@ void Mergesort(Item* Arr, Item* tArr, int left, int right) {
 	Mergesort(Arr, tArr, mid, right);
 	Merging(Arr, tArr, left, mid, right);
 }
+
+
+

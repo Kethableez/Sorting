@@ -3,6 +3,7 @@
 #include <time.h>
 
 #include "menu.h"
+#include "Array.h"
 
 using namespace std;
 

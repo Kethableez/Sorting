@@ -141,7 +141,6 @@
     <ClCompile Include="Array.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
-    <ClCompile Include="Sort.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Array.h" />
@@ -149,7 +148,6 @@
     <ClInclude Include="menu.h" />
     <ClInclude Include="Mergesort.h" />
     <ClInclude Include="Quicksort.h" />
-    <ClInclude Include="Sort.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
