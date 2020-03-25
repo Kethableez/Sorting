@@ -68,7 +68,6 @@ void Quick(int size, int choice, float perc) {
 			if (Arr->IsCorrect()) {
 				t = clock() - t;
 				Tarr[i] = (int)t;
-				//std::cout << "[Quicksort] Sorting time: " << t << " ms" << std::endl;
 				correct = true;
 			}
 			else std::cout << "Sorting is incorrect! \n";
@@ -88,7 +87,6 @@ void Quick(int size, int choice, float perc) {
 			if (Arr->IsCorrect()) {
 				t = clock() - t;
 				Tarr[i] = (int)t;
-				//std::cout << "[Quicksort] Sorting time: " << t << " ms" << std::endl;
 				correct = true;
 			}
 			else std::cout << "Sorting is incorrect! \n";
@@ -108,7 +106,6 @@ void Quick(int size, int choice, float perc) {
 			if (Arr->IsCorrect()) {
 				t = clock() - t;
 				Tarr[i] = (int)t;
-				//std::cout << "[Quicksort] Sorting time: " << t << " ms" << std::endl;
 				correct = true;
 			}
 			else std::cout << "Sorting is incorrect! \n";
@@ -272,7 +269,6 @@ void Intro(int size, int choice, float perc) {
 			if (Arr->IsCorrect()) {
 				t = clock() - t;
 				Tarr[i] = (int)t;
-				//std::cout << "[Introsort] Sorting time: " << t << " ms" << std::endl;
 				correct = true;
 			}
 			else std::cout << "Invalid sorting! \n";
@@ -291,7 +287,6 @@ void Intro(int size, int choice, float perc) {
 			if (Arr->IsCorrect()) {
 				t = clock() - t;
 				Tarr[i] = (int)t;
-				//std::cout << "[Introsort] Sorting time: " << t << " ms" << std::endl;
 				correct = true;
 			}
 			else std::cout << "Invalid sorting! \n";
@@ -310,7 +305,6 @@ void Intro(int size, int choice, float perc) {
 			if (Arr->IsCorrect()) {
 				t = clock() - t;
 				Tarr[i] = (int)t;
-				//std::cout << "[Introsort] Sorting time: " << t << " ms" << std::endl;
 				correct = true;
 			}
 			else std::cout << "Invalid sorting! \n";

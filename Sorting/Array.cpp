@@ -41,21 +41,18 @@ bool Array::IsCorrect() {
 	for (int i = 0; i < this->size; i++) {		
 		if (i == 0) {
 			if (this->Arr[i] > this->Arr[i + 1]) {
-				std::cout << this->Arr[i] << " " << this->Arr[i + 1] << std::endl;
 				return false;
 			}
 		}
 
 		else if (i == this->size - 1) {
 			if (this->Arr[i] < this->Arr[i - 1]) {
-				std::cout << this->Arr[i] << " " << this->Arr[i - 1] << std::endl;
 				return false;
 			}
 		}
 
 		else {
 			if (this->Arr[i + 1] < this->Arr[i]) {
-				std::cout << this->Arr[i] << " " << this->Arr[i + 1] << std::endl;
 				return false;
 			}
 		}

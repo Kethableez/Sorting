@@ -4,6 +4,10 @@
 #include <cmath>
 #include <time.h>
 
+/*
+	Class of Array
+*/
+
 class Array{
 public:
 	int size;

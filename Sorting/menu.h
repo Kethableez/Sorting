@@ -13,11 +13,23 @@
 #include "Mergesort.h"
 #include "Introsort.h"
 
+/*
+	Drive function
+*/
+
 void Sorting();
+
+/* 
+	Sorting functions	
+*/
 
 void Quick(int size, int choice, float perc);
 void Merge(int size, int choice, float perc);
 void Intro(int size, int choice, float perc);
+
+/*
+	Save to file functions
+*/
 
 void Write(int average, int total, std::string sFilename);
 void CreateFile(std::string sFilename);

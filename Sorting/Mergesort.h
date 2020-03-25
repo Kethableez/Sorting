@@ -35,6 +35,3 @@ void Mergesort(Item* Arr, Item* tArr, int left, int right) {
 	Mergesort(Arr, tArr, mid, right);
 	Merging(Arr, tArr, left, mid, right);
 }
-
-
-

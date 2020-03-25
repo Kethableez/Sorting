@@ -6,6 +6,7 @@
 /* 
 	Swap method
 */
+
 template <typename Item>
 void Swap(Item* Arr, int arg1, int arg2) {
 	Item temp = Arr[arg1];
